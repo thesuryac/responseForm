@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MultilevelContext } from "./context/MultilevelContext";
 import MultiLevelForm from "./components/MultilevelForm";
 
 const App = () => {
   const [formData, setFormData] = useState({
     name: "",
-    userName: "",
+    username: "",
     password: "",
     email: "",
     roles: [],
@@ -14,6 +14,11 @@ const App = () => {
   });
   const [imageFileUrl, setImageFileUrl] = useState("");
   const [selectedRoles, setSelectedRoles] = useState([]);
+
+  useEffect(() => {
+    setFormData({ ...formData, roles: selectedRoles });
+  }, [selectedRoles]);
+
   return (
     <MultilevelContext.Provider
       value={{

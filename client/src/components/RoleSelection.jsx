@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import { Design, HireDesigner, Designer } from "../assets/index";
 import { MultilevelContext } from "../context/MultilevelContext";
@@ -23,7 +23,7 @@ const RoleSelection = ({ onPrevious }) => {
   return (
     <div className="flex">
       {selectedRoles.map((ele) => {
-        return <p>{ele}</p>;
+        return <p key={ele}>{ele}</p>;
       })}
       <Option
         handleSelectionChange={handleSelectionChange}

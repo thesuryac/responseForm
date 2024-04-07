@@ -11,6 +11,9 @@ const CreateProfile = ({ onNext, onPrevious, formData, setFormData }) => {
   const { imageFileUrl, setImageFileUrl } = useContext(MultilevelContext);
 
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
+  const handleChange = (e) => {
+    setFormData({ ...formData, location: e.target.value });
+  };
   const handleImage = () => {
     console.log("Image");
     const fileName = new Date().getTime() + "-" + img.name;
@@ -66,11 +69,14 @@ const CreateProfile = ({ onNext, onPrevious, formData, setFormData }) => {
           )}
         </div>
 
-        <button onClick={handleImage}>upload</button>
+        <button type="button" onClick={handleImage}>
+          upload
+        </button>
         <input
           type="text"
           className="h-12 p-2 rounded-lg"
           placeholder="Location"
+          onChange={handleChange}
         />
       </div>
 

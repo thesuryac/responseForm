@@ -13,16 +13,15 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  profile: {
+  avatar: {
     type: String,
-    required: true,
   },
   location: {
     type: String,
     required: true,
   },
-  role: {
-    type: String,
+  roles: {
+    type: [],
     required: true,
   },
 });
