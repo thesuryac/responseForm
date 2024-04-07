@@ -5,7 +5,7 @@ const Option = ({ handleSelectionChange, selectedRoles, role, image }) => {
   const inputRef = useRef();
   return (
     <div>
-      <label htmlFor={role} onClick={handleSelectionChange}>
+      <label htmlFor={role} >
         <div className="">
           <div className="h-96 w-96">
             <img
