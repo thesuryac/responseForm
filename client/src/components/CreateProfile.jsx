@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { FaCamera } from "react-icons/fa";
 import { imageDb } from "../config";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
@@ -6,12 +6,17 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { MultilevelContext } from "../context/MultilevelContext";
 
 const CreateProfile = ({ onNext, onPrevious, formData, setFormData }) => {
+  const [location, setLocation] = useState("");
+  const [isButtonEnable, setIsButtonEnable] = useState(false);
   const inputRef = useRef();
   const [img, setImg] = useState("");
   const { imageFileUrl, setImageFileUrl } = useContext(MultilevelContext);
 
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const handleChange = (e) => {
+    setLocation(e.target.value);
+    if (location !== "") setIsButtonEnable(true);
+
     setFormData({ ...formData, location: e.target.value });
   };
   const handleImage = () => {
@@ -38,6 +43,12 @@ const CreateProfile = ({ onNext, onPrevious, formData, setFormData }) => {
       }
     );
   };
+
+  useEffect(() => {
+    setTimeout(() => {}, 500);
+    if (location === "") setIsButtonEnable(true);
+    else setIsButtonEnable(false);
+  }, [location]);
   return (
     <div className="h-[90vh] w-full  flex flex-col justify-evenly bg-zinc-700 rounded-xl">
       <h1 className="text-white text-2xl font-extrabold mx-auto">
@@ -95,12 +106,25 @@ const CreateProfile = ({ onNext, onPrevious, formData, setFormData }) => {
         >
           previous
         </button>
-        <button
-          className="h-12 w-1/3 text-white bg-indigo-700 rounded-lg"
-          onClick={onNext}
-        >
-          next
-        </button>
+        {isButtonEnable ? (
+          <button
+            className={`h-12 w-full text-white max-w-56 bg-indigo-700 rounded-lg cursor-not-allowed ${
+              !isButtonEnable && "opacity-50"
+            }`}
+            onClick={() => onNext(formData)} // Pass form data to onSubmit handler
+            disabled
+          >
+            All fields are mandatory
+          </button>
+        ) : (
+          <button
+            type="button"
+            className={`h-12 w-full max-w-56 text-white bg-indigo-700 rounded-lg`}
+            onClick={() => onNext(formData)} // Pass form data to onSubmit handler
+          >
+            Next
+          </button>
+        )}
       </div>
     </div>
   );
