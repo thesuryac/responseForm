@@ -21,37 +21,40 @@ const RoleSelection = ({ onPrevious }) => {
   };
 
   return (
-    <div className="flex">
-      {selectedRoles.map((ele) => {
-        return <p key={ele}>{ele}</p>;
-      })}
-      <Option
-        handleSelectionChange={handleSelectionChange}
-        selectedRoles={selectedRoles}
-        role={"designer"}
-        image={Designer}
-      />
-      <Option
-        handleSelectionChange={handleSelectionChange}
-        selectedRoles={selectedRoles}
-        role={"hireDesigner"}
-        image={HireDesigner}
-      />
-      <Option
-        handleSelectionChange={handleSelectionChange}
-        selectedRoles={selectedRoles}
-        role={"design"}
-        image={Design}
-      />
+    <div className="min-h-full p-5 w-auto sm:w-full flex flex-col justify-around items-center bg-zinc-700 rounded-lg">
+      <h1 className=" font-extrabold text-2xl">Role Selection</h1>
+      <div className="mt-20 flex flex-col justify-around items-center gap-40">
+        <Option
+          handleSelectionChange={handleSelectionChange}
+          selectedRoles={selectedRoles}
+          role={"designer"}
+          image={Designer}
+        />
+        <Option
+          handleSelectionChange={handleSelectionChange}
+          selectedRoles={selectedRoles}
+          role={"hireDesigner"}
+          image={HireDesigner}
+        />
+        <Option
+          handleSelectionChange={handleSelectionChange}
+          selectedRoles={selectedRoles}
+          role={"design"}
+          image={Design}
+        />
+      </div>
 
-      <div className="flex justify-around items-center">
+      <div className="w-full p-2 flex mt-20  justify-around items-center">
         <button
-          className="h-12 w-96 bg-indigo-700 rounded-lg"
+          className="h-12 w-1/3 text-white bg-indigo-700 rounded-lg"
           onClick={onPrevious}
         >
           previous
         </button>
-        <button className="h-12 w-96 bg-indigo-700 rounded-lg" type="submit">
+        <button
+          className="h-12 w-1/3 text-white bg-indigo-700 rounded-lg"
+          type="submit"
+        >
           Finish
         </button>
       </div>

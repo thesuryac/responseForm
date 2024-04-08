@@ -6,7 +6,7 @@ import RoleSelection from "./RoleSelection";
 import FinalResult from "./FinalResult";
 
 function MultiLevelForm() {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(2);
   const { formData, setFormData } = useContext(MultilevelContext);
   const [ok, setOk] = useState(false);
 
@@ -43,7 +43,7 @@ function MultiLevelForm() {
 
   return (
     <form
-      className="container mx-auto h-[80vh] px-4 py-8 flex justify-center items-center"
+      className="container mx-auto h-auto w-[90vw] sm:w-[100vw] min:w-[80vw] min-h-[100vh] px-4 py-8 flex justify-center items-center"
       onSubmit={handleSubmit}
     >
       {currentStep === 1 && (
@@ -68,7 +68,9 @@ function MultiLevelForm() {
           onPrevious={handlePrevStep}
         />
       )}
-      {ok && currentStep === 4 && <FinalResult email={formData.email} />}
+      {ok && currentStep === 4 && (
+        <FinalResult email={formData.email} name={formData.name} />
+      )}
     </form>
   );
 }

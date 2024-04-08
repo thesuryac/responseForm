@@ -39,9 +39,11 @@ const CreateProfile = ({ onNext, onPrevious, formData, setFormData }) => {
     );
   };
   return (
-    <div className="h-full w-full border border-blue-800 flex flex-col justify-evenly bg-slate-800">
-      <h1 className="text-white mx-auto">Create Profile</h1>
-      <div className="h-[60%] w-[60%] mx-auto flex flex-col justify-evenly">
+    <div className="h-[90vh] w-full  flex flex-col justify-evenly bg-zinc-700 rounded-xl">
+      <h1 className="text-white text-2xl font-extrabold mx-auto">
+        Create Profile
+      </h1>
+      <div className="h-[60%] w-[60%] mx-auto flex flex-col items-center justify-evenly">
         <input
           type="file"
           accept="image/*"
@@ -52,14 +54,16 @@ const CreateProfile = ({ onNext, onPrevious, formData, setFormData }) => {
         />
         <div
           onClick={() => inputRef.current.click()}
-          className="h-52 w-52 bg-slate-300 rounded-full flex justify-center items-center cursor-pointer"
+          className="h-52 w-52 bg-indigo-400 rounded-full flex justify-center items-center cursor-pointer"
         >
           {!imageUploadProgress && !imageFileUrl && (
             <FaCamera className="absolute" size={50} />
           )}
           {imageUploadProgress ? (
             //
-            <p>{imageUploadProgress}</p>
+            <p className="text-3xl font-semibold text-indigo-800">
+              {imageUploadProgress} %
+            </p>
           ) : (
             <img
               className="h-full w-full rounded-full"
@@ -69,12 +73,16 @@ const CreateProfile = ({ onNext, onPrevious, formData, setFormData }) => {
           )}
         </div>
 
-        <button type="button" onClick={handleImage}>
+        <button
+          type="button"
+          className="h-12 w-full min-w-56 text-white bg-indigo-700 rounded-lg"
+          onClick={handleImage}
+        >
           upload
         </button>
         <input
           type="text"
-          className="h-12 p-2 rounded-lg"
+          className="h-12 p-2 w-full min-w-56 rounded-lg"
           placeholder="Location"
           onChange={handleChange}
         />
@@ -82,12 +90,15 @@ const CreateProfile = ({ onNext, onPrevious, formData, setFormData }) => {
 
       <div className="flex justify-around items-center">
         <button
-          className="h-12 w-96 bg-indigo-700 rounded-lg"
+          className="h-12 w-1/3 text-white bg-indigo-700 rounded-lg"
           onClick={onPrevious}
         >
           previous
         </button>
-        <button className="h-12 w-96 bg-indigo-700 rounded-lg" onClick={onNext}>
+        <button
+          className="h-12 w-1/3 text-white bg-indigo-700 rounded-lg"
+          onClick={onNext}
+        >
           next
         </button>
       </div>
